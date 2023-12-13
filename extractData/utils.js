@@ -16,25 +16,42 @@ export function getDates(games){
 
 export function getHistories(gamesData){
   // sortGamesByDate()
-  const games = normalizeHistories(gamesData)
-  // const playersHistoriesByGame = getPlayersHistoryPerGame(games)
-  // const playersHistoriesByPlayer = groupHistoriesByPlayer(playersHistories);
+  const playersHistories = normalizeAndRetrieveHistories(gamesData)
+  console.log(playersHistories);
 }
 
-function normalizeHistories(gamesData){
-  console.log("gamesData[1]")
-  console.log(gamesData[1].results)
-  console.log("gamesData[33]")
-  console.log(gamesData[33].results)
-}
-
-function getPlayersHistoryPerGame(games){
-  let playersHistories = []
-  for(let i = 0; i < games.length; i++){
-
+function normalizeAndRetrieveHistories(gamesData){
+  let playersHistories = [];
+  for(let i = 0; i < gamesData.length; i++){
+    if(gamesData[i].results[0][0].history){
+      let springGameHistories = springGameData(gamesData[i].results[0])
+      for(let j = 0; j < springGameHistories.length; j++){
+        playersHistories.push(springGameHistories[j])
+      }
+      playersHistories.push()
+    } else{
+      // let expressGameHistories = expressGameData(gamesData[i].results)
+      // for(let k = 0; k < gameHistories.length; k++){
+      //   playersHistories.push(gameHistories[k])
+      // }
+      // playersHistories.push()
+      console.log("Es de express")
+    }
   }
+  return playersHistories;
 }
 
-function groupHistoriesByPlayer(histories){
+function springGameData(results){
+  let playersGameHistory = [];
+  for(let i = 0; i < results.length; i++){
+    let playerData = {};
+    playerData.username = results[i].username;
+    playerData.history = results[i].history;
+    playersGameHistory.push(playerData)
+  }
+  return playersGameHistory;
+}
 
+function expressGameData(game){
+  return "Express"
 }
