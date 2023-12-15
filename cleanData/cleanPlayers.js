@@ -7,6 +7,7 @@ export async function normalizedPlayersData(){
     let player = {}
     player.username = allPlayers[i].username;
     player.won = allPlayers[i].gamesWon;
+    player.bestStreak = 0;
     cleanedPlayers.push(player)
   }
   return cleanedPlayers;
