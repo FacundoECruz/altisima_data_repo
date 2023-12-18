@@ -2,11 +2,11 @@ import { normalizeGameData } from "./cleanData/cleanGames.js";
 import { normalizedPlayersData } from "./cleanData/cleanPlayers.js";
 import { addStreaks } from "./transform/addStreaks.js";
 
-// const normalizedGames = await normalizeGameData();
+const normalizedGames = await normalizeGameData();
 const normalizedPlayers = await normalizedPlayersData();
-// const playersWithStreaks = addStreaks(normalizedGames, normalizedPlayers)
+const playersWithStreaks = addStreaks(normalizedGames, normalizedPlayers)
 
-console.log(normalizedPlayers)
+console.log(playersWithStreaks)
 
 // exportToCsv("./csv/games.csv", normalizedGames);
 // exportToCsv("./csv/players.csv", playersWithStreaks);

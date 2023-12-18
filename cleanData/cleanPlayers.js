@@ -1,7 +1,8 @@
-import { getAllPlayers } from "../db/connection.js";
+import { getAllPlayers, getPlayersFromJson } from "../db/connection.js";
 
 export async function normalizedPlayersData(){
-  const allPlayers = await getAllPlayers()
+  // const allPlayers = await getAllPlayers()
+  const allPlayers = await getPlayersFromJson()
   let cleanedPlayers = []
   for(let i = 0; i < allPlayers.length; i++){
     let player = {}

@@ -42,8 +42,8 @@ async function getGamesFromJson() {
     .readFile(filePath, "utf8")
     .then((data) => {
       try {
-        const partidas = JSON.parse(data);
-        return partidas;
+        const gamesData = JSON.parse(data);
+        return gamesData;
       } catch (error) {
         console.error("Error al analizar el JSON:", error.message);
       }
@@ -52,4 +52,20 @@ async function getGamesFromJson() {
   return games;
 }
 
-export { getAllGames, getAllPlayers, getGamesFromJson };
+async function getPlayersFromJson(){
+  const filePath = "../altisima_produccion_db_backups/13-12-23/players.json";
+  const players = await fs.promises
+    .readFile(filePath, "utf8")
+    .then((data) => {
+      try {
+        const playersData = JSON.parse(data);
+        return playersData;
+      } catch (error) {
+        console.error("Error al analizar el JSON:", error.message);
+      }
+    })
+    .catch((err) => console.error("Error al leer el archivo:", err));
+  return players;
+}
+
+export { getAllGames, getAllPlayers, getGamesFromJson, getPlayersFromJson };
