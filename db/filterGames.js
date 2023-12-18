@@ -1,7 +1,8 @@
-import { getAllGames } from "./connection.js";
+import { getAllGames, getGamesFromJson } from "./connection.js";
 
 export async function getCompletedGames() {
-  const allGames = await getAllGames();
+  // const allGames = await getAllGames();
+  const allGames = await getGamesFromJson();
   const roundCriteriaForCompletedGame = 10;
 
   let completedGames = [];
@@ -14,5 +15,6 @@ export async function getCompletedGames() {
   // console.log(`${completedGames.length} partidas completas`);
   return completedGames;
 }
+
 
 

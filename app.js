@@ -1,17 +1,15 @@
-import fs from "fs";
 import { normalizeGameData } from "./cleanData/cleanGames.js";
 import { normalizedPlayersData } from "./cleanData/cleanPlayers.js";
 import { addStreaks } from "./transform/addStreaks.js";
 
-
-const normalizedGames = await normalizeGameData();
+// const normalizedGames = await normalizeGameData();
 const normalizedPlayers = await normalizedPlayersData();
-const playersWithStreaks = addStreaks(normalizedGames, normalizedPlayers)
+// const playersWithStreaks = addStreaks(normalizedGames, normalizedPlayers)
 
-console.log(playersWithStreaks)
+console.log(normalizedPlayers)
 
 // exportToCsv("./csv/games.csv", normalizedGames);
-// exportToCsv("./csv/players.csv", normalizedPlayers);
+// exportToCsv("./csv/players.csv", playersWithStreaks);
 
 // function exportToCsv(filePath, data) {
 //   try {

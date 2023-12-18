@@ -1,4 +1,5 @@
-import { MongoClient } from 'mongodb';
+import { MongoClient } from "mongodb";
+import fs from "fs";
 
 const url = "mongodb://localhost:27017";
 const dbName = "backupAltisimaProduccion";
@@ -19,7 +20,7 @@ async function getAllGames() {
   }
 }
 
-async function getAllPlayers(){
+async function getAllPlayers() {
   const client = new MongoClient(url);
   try {
     await client.connect();
@@ -34,4 +35,21 @@ async function getAllPlayers(){
     await client.close();
   }
 }
-export { getAllGames, getAllPlayers };
+
+async function getGamesFromJson() {
+  const filePath = "../altisima_produccion_db_backups/13-12-23/games.json";
+  const games = await fs.promises
+    .readFile(filePath, "utf8")
+    .then((data) => {
+      try {
+        const partidas = JSON.parse(data);
+        return partidas;
+      } catch (error) {
+        console.error("Error al analizar el JSON:", error.message);
+      }
+    })
+    .catch((err) => console.error("Error al leer el archivo:", err));
+  return games;
+}
+
+export { getAllGames, getAllPlayers, getGamesFromJson };
